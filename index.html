@@ -1,0 +1,2430 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7067883872420876"  
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Teka-Teki Cabaran</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+  
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(139,92,246,0.35), transparent 35%),
+        radial-gradient(circle at 80% 80%, rgba(236,72,153,0.30), transparent 35%),
+        linear-gradient(135deg, #09090f, #17112b, #0f172a);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+.game {
+    width: 100%;
+    max-width: 550px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 25px;
+    padding: 22px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    display: none;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 30px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #cbd5e1;
+}
+
+.hidden {
+    display: none;
+}
+
+.start-box,
+.result-box {
+    text-align: center;
+}
+.start-button,
+.again-button,
+.next-button {
+    width: 100%;
+    min-height: 60px;
+    padding: 18px 20px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 8px 20px rgba(37,99,235,0.35);
+
+
+}
+  
+.start-button:hover,
+.again-button:hover,
+.next-button:hover {
+    background: #fbbf24;
+}
+
+.stats {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+
+  .stat {
+    flex: 1;
+    background: linear-gradient(145deg, #0f172a, #172554);
+    border: 1px solid rgba(59,130,246,0.4);
+    border-radius: 15px;
+    padding: 11px 8px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+
+  .question {
+    background: linear-gradient(145deg, #0f172a, #172554);
+    color: white;
+    min-height: 150px;
+    border: 1px solid rgba(59,130,246,0.45);
+    border-radius: 20px;
+    padding: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.5;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+}
+
+.answers {
+    display: grid;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.answer {
+    border: 1px solid rgba(59,130,246,0.35);
+    border-radius: 14px;
+    padding: 15px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    background: linear-gradient(145deg, #1e293b, #172554);
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+}
+.answer:hover {
+    background: linear-gradient(145deg, #2563eb, #1d4ed8);
+    transform: translateY(-2px);
+}
+
+.answer.correct {
+    background: #22c55e;
+    color: white;
+}
+
+.answer.wrong {
+    background: #ef4444;
+    color: white;
+}
+
+.answer:disabled {
+    cursor: default;
+}
+
+.next-button {
+    display: none;
+}
+.ad-space {
+    width: 100%;
+    min-height: 90px;
+    margin: 20px 0;
+    border: 2px dashed rgba(255,255,255,0.4);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+
+}
+
+.big-score {
+    font-size: 55px;
+    font-weight: bold;
+    margin: 20px 0 5px;
+}
+
+.info {
+    color: #cbd5e1;
+}
+
+.high-score {
+    margin-top: 10px;
+    color: #fbbf24;
+    font-weight: bold;
+}
+
+  #playerScreen {
+    text-align: center;
+    padding: 30px 20px;
+    margin: 20px auto;
+    max-width: 400px;
+    position: relative;
+    z-index: 10;
+    background: white;
+
+  }
+
+.result-box {
+    text-align: center;
+    background: linear-gradient(145deg, #0f172a, #172554);
+    color: white;
+    border: 1px solid rgba(59,130,246,0.45);
+    border-radius: 25px;
+    padding: 30px 22px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.45);
+}
+
+.result-box .big-score {
+    font-size: 58px;
+    font-weight: bold;
+    margin: 20px 0 10px;
+}
+
+.result-box .info {
+    color: #cbd5e1;
+    font-size: 16px;
+}
+
+.result-box .high-score {
+    color: #fbbf24;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+  
+#playerScreen input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    margin: 15px 0;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+#playerScreen button {
+    padding: 14px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+  .leaderboard-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.leaderboard-popup.hidden {
+    display: none;
+}
+
+.leaderboard-box {
+    width: 90%;
+    max-width: 450px;
+
+    background: white;
+    border-radius: 25px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+.leaderboard-box h2 {
+    margin-top: 0;
+    font-size: 28px;
+}
+
+.leaderboard-subtitle {
+    color: #777;
+    margin-bottom: 20px;
+}
+.leader-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    margin: 8px 0;
+    background: #eeeeee;
+    border-radius: 12px;
+    color: #000000 !important;
+}
+
+.leader-rank {
+    width: 45px;
+    flex-shrink: 0;
+    color: #000000 !important;
+    text-align: left;
+}
+
+.leader-name {
+    flex: 1;
+    min-width: 0;
+    color: #000000 !important;
+    text-align: left;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.leader-score {
+    width: 85px;
+    flex-shrink: 0;
+    color: #000000 !important;
+    text-align: right;
+    font-weight: bold;
+}
+  .question-image {
+    width: 100%;
+    height: 180px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #f59e0b, #ec4899);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+
+  .hint-button {
+    display: block;
+    width: 100% !important;
+    min-height: 58px !important;
+    padding: 18px 20px !important;
+    margin-top: 15px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 8px 20px rgba(37,99,235,0.35);
+}
+
+  
+</style>
+</head>
+
+<body>
+
+
+<div id="playerScreen">
+
+  <div class="language-buttons">
+    <button type="button" onclick="setLanguage('ms')">🇲🇾 BM</button>
+    <button type="button" onclick="setLanguage('en')">🇬🇧 English</button>
+  </div>
+
+  <h2>🎮 Teka-Teki Cabaran</h2>
+
+  <p>Masukkan nama anda</p>
+  <input id="playerName" type="text" placeholder="Nama anda">
+  <button onclick="startGame()">MULA BERMAIN</button>
+
+</div>
+
+<div class="game">
+
+    <div id="startScreen" class="start-box">
+
+        <h1 id="gameTitle">🧠 Teka-Teki Cabaran</h1>
+
+        <p class="subtitle" id="gameSubtitle">
+            Uji kepandaian kamu dengan 50 teka-teki.
+        </p>
+
+        <p id="livesText">❤️ Kamu mempunyai <b>3 nyawa</b></p>
+
+        <p id="pointsText">⭐ Jawapan betul = <b>10 mata</b></p>
+
+        <p class="high-score">
+            🏆 <span id="highScoreText">Skor Tertinggi:</span>
+            <span id="startHighScore">0</span>
+        </p>
+
+        <button type="button" class="start-button" onclick="startGame()" id="startGameButton">
+            MULA MAIN
+        </button>
+
+    </div>
+
+    <div id="gameScreen" class="hidden">
+      
+<h1 class="game-title">
+    🧠 Teka-Teki Cabaran
+</h1>
+    <div class="stats">
+
+        <div class="stat">
+            ❓ <span id="questionNumber">1/50</span>
+        </div>
+
+        <div class="stat">
+            ⭐ <span id="score">0</span>
+        </div>
+
+        <div class="stat">
+            🪙 <span id="coins">0</span>
+        </div>
+
+    </div>
+
+    <div class="stat">
+        <span id="lives">❤️❤️❤️</span>
+    </div>
+
+    <div id="question" class="question">
+        Soalan akan muncul di sini
+    </div>
+
+    <div
+        id="questionImage"
+        class="question-image"
+        style="display:none;">
+        ❓
+    </div>
+
+    <div id="answers" class="answers"></div>
+
+    <button
+        type="button"
+        class="hint-button"
+        onclick="useHint()">
+        🪙 GUNA HINT (20 COIN)
+    </button>
+
+    <button
+        type="button"
+        id="nextButton"
+        class="next-button"
+        onclick="nextQuestion()">
+        SOALAN SETERUSNYA ➡️
+    </button>
+
+</div>
+<div id="resultScreen" class="result-box hidden">
+  
+  
+    <h1>
+        🧠 Teka-Teki Cabaran
+    </h1>
+
+    <div id="finalScore" class="big-score">
+        0/500
+    </div>
+
+    <p class="info">
+        Jumlah skor kamu
+    </p>
+
+    <p id="resultMessage"></p>
+
+    <p id="playerLevel" class="high-score"></p>
+
+    <p class="high-score">
+        🏆 Skor Tertinggi:
+        <span id="finalHighScore">0</span>
+    </p>
+
+    <p class="high-score">
+        👤 Nama:
+        <span id="finalPlayerName"></span>
+    </p>
+
+    <p class="high-score">
+        🎁 Bonus Tamat Game: +10 🪙
+    </p>
+
+    <p class="high-score">
+        🪙 Jumlah Coin:
+        <span id="finalCoins">0</span>
+    </p>
+
+<div class="ad-space">
+    📢 IKLAN
+</div>
+      
+       
+  
+    <button
+        class="again-button"
+        onclick="startGame()">
+        🔄 MAIN LAGI
+    </button>
+
+    <button
+        class="again-button"
+        onclick="showLeaderboard()">
+        🏆 LEADERBOARD
+    </button>
+
+<div id="leaderboardPopup" class="leaderboard-popup hidden">
+
+    <div class="leaderboard-box">
+
+        <h2>🏆 LEADERBOARD</h2>
+
+        <p class="leaderboard-subtitle">
+            10 Pemain Terbaik
+        </p>
+
+        <div id="leaderboardList">
+            Memuatkan leaderboard...
+        </div>
+      
+        <button
+            class="again-button"
+            onclick="closeLeaderboard()">
+            ✖ TUTUP
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+  
+let currentLanguage = "ms";
+
+  function setLanguage(language) {
+
+    currentLanguage = language;
+
+    const playerScreen = document.getElementById("playerScreen");
+    const title = playerScreen.querySelector("h2");
+    const text = playerScreen.querySelector("p");
+    const input = document.getElementById("playerName");
+    const startButton = playerScreen.querySelector(
+        "button[onclick='startGame()']"
+    );
+
+    const gameTitle = document.getElementById("gameTitle");
+    const gameSubtitle = document.getElementById("gameSubtitle");
+    const livesText = document.getElementById("livesText");
+    const pointsText = document.getElementById("pointsText");
+    const highScoreText = document.getElementById("highScoreText");
+    const startGameButton = document.getElementById("startGameButton");
+
+
+    if (language === "en") {
+
+        // SKRIN NAMA
+        title.textContent = "🎮 Riddle Challenge";
+        text.textContent = "Enter your name";
+        input.placeholder = "Your name";
+        startButton.textContent = "START GAME";
+
+
+        // SKRIN MULA GAME
+        gameTitle.textContent = "🧠 Riddle Challenge";
+
+        gameSubtitle.textContent =
+            "Test your skills with 50 riddles.";
+
+        livesText.innerHTML =
+            "❤️ You have <b>3 lives</b>";
+
+        pointsText.innerHTML =
+            "⭐ Correct answer = <b>10 points</b>";
+
+        highScoreText.textContent =
+            "Highest Score:";
+
+        startGameButton.textContent =
+            "START GAME";
+
+    } else {
+
+        // SKRIN NAMA
+        title.textContent = "🎮 Teka-Teki Cabaran";
+        text.textContent = "Masukkan nama anda";
+        input.placeholder = "Nama anda";
+        startButton.textContent = "MULA BERMAIN";
+
+
+        // SKRIN MULA GAME
+        gameTitle.textContent =
+            "🧠 Teka-Teki Cabaran";
+
+        gameSubtitle.textContent =
+            "Uji kepandaian kamu dengan 50 teka-teki.";
+
+        livesText.innerHTML =
+            "❤️ Kamu mempunyai <b>3 nyawa</b>";
+
+        pointsText.innerHTML =
+            "⭐ Jawapan betul = <b>10 mata</b>";
+
+        highScoreText.textContent =
+            "Skor Tertinggi:";
+
+        startGameButton.textContent =
+            "MULA MAIN";
+    }
+}
+
+  function showLeaderboard() {
+    const popup = document.getElementById("leaderboardPopup");
+    const list = document.getElementById("leaderboardList");
+
+    popup.classList.remove("hidden");
+    list.innerHTML = "⏳ Memuatkan leaderboard...";
+
+    fetch(GOOGLE_SHEET_URL)
+        .then(response => response.json())
+        .then(data => {
+
+            if (!Array.isArray(data) || data.length === 0) {
+                list.innerHTML = "Belum ada pemain.";
+                return;
+            }
+
+            data.sort((a, b) => Number(b.score) - Number(a.score));
+
+            list.innerHTML = "";
+
+            data.slice(0, 10).forEach((player, index) => {
+
+                let medal = "";
+
+                if (index === 0) medal = "🥇";
+                else if (index === 1) medal = "🥈";
+                else if (index === 2) medal = "🥉";
+                else medal = (index + 1) + ".";
+
+                const row = document.createElement("div");
+
+                row.className = "leader-row";
+
+                row.innerHTML =
+                    "<div class='leader-rank'>" + medal + "</div>" +
+                    "<div class='leader-name'>" +
+                    (player.nama || "Pemain") +
+                    "</div>" +
+                    "<div class='leader-score'>" +
+                    Number(player.score || 0) +
+                    " mata</div>";
+
+                list.appendChild(row);
+            });
+
+        })
+        .catch(error => {
+            console.log(error);
+            list.innerHTML = "❌ Gagal memuatkan leaderboard.";
+        });
+}
+
+  
+  function closeLeaderboard() {
+
+    document
+        .getElementById("leaderboardPopup")
+        .classList.add("hidden");
+}
+  
+const questions = [
+
+    {
+        
+    question: "Ada bandar tetapi tiada rumah, ada sungai tetapi tiada air, ada hutan tetapi tiada pokok. Apakah aku?",
+    answers: ["Peta", "Buku", "Globus", "Gambar"],
+    correct: 0,
+    image: "🗺️"
+
+    },
+
+    {
+        question: "Aku mengelilingi dunia tetapi tetap berada di satu sudut. Apakah aku?",
+        answers: ["Jam", "Setem", "Bulan", "Kereta"],
+        correct: 1
+    },
+
+    {
+        question: "Semakin banyak kamu mengambil daripadaku, semakin besar aku. Apakah aku?",
+        answers: ["Lubang", "Batu", "Kotak", "Gunung"],
+        correct: 0
+    },
+
+    {
+        question: "Aku mempunyai banyak kekunci tetapi tiada pintu. Aku mempunyai ruang tetapi tiada bilik. Apakah aku?",
+        answers: ["Piano", "Papan kekunci", "Telefon", "Peti"],
+        correct: 1
+    },
+
+    {
+        question: "Aku sentiasa akan datang tetapi tidak pernah sampai. Apakah aku?",
+        answers: ["Semalam", "Esok", "Pagi", "Malam"],
+        correct: 1
+    },
+
+    {
+        question: "Aku sangat ringan tetapi manusia paling kuat pun tidak mampu menahanku lama. Apakah aku?",
+        answers: ["Angin", "Nafas", "Debu", "Air"],
+        correct: 1
+    },
+
+    {
+        question: "Aku mempunyai kepala dan ekor tetapi tiada badan. Apakah aku?",
+        answers: ["Ular", "Syiling", "Ikan", "Cacing"],
+        correct: 1
+    },
+
+    {
+        question: "Jika kamu mempunyai aku, kamu mahu berkongsi aku. Tetapi apabila kamu berkongsi aku, kamu tidak lagi memilikinya. Apakah aku?",
+        answers: ["Rahsia", "Duit", "Makanan", "Hadiah"],
+        correct: 0
+    },
+
+    {
+        question: "Apakah sesuatu yang boleh pecah walaupun tidak disentuh?",
+        answers: ["Kaca", "Janji", "Batu", "Kayu"],
+        correct: 1
+    },
+
+    {
+        question: "Apa yang sentiasa naik tetapi tidak pernah turun?",
+        answers: ["Asap", "Umur", "Harga", "Belon"],
+        correct: 1
+    },
+
+    {
+        question: "Aku menjadi semakin basah ketika aku mengeringkan sesuatu. Apakah aku?",
+        answers: ["Awan", "Tuala", "Kain", "Sponge"],
+        correct: 1
+    },
+
+    {
+        question: "Aku mempunyai banyak mata tetapi tidak boleh melihat. Apakah aku?",
+        answers: ["Kentang", "Jarum", "Batu", "Pokok"],
+        correct: 0
+    },
+
+    {
+        question: "Aku mempunyai leher tetapi tiada kepala. Apakah aku?",
+        answers: ["Botol", "Baju", "Gitar", "Kasut"],
+        correct: 0
+    },
+
+    {
+        question: "Apa yang boleh kamu tangkap tetapi tidak boleh kamu lempar?",
+        answers: ["Bola", "Selsema", "Ikan", "Kunci"],
+        correct: 1
+    },
+
+    {
+        question: "Aku tidak hidup tetapi boleh membesar. Aku tiada paru-paru tetapi memerlukan udara. Apakah aku?",
+        answers: ["Api", "Batu", "Pokok", "Awan"],
+        correct: 0
+    },
+
+    {
+        question: "Semakin lama aku digunakan, semakin pendek aku menjadi. Apakah aku?",
+        answers: ["Tali", "Lilin", "Pensel", "Jalan"],
+        correct: 1
+    },
+
+    {
+        question: "Aku mempunyai banyak halaman tetapi bukan sebuah buku. Apakah aku?",
+        answers: ["Kalendar", "Majalah", "Surat khabar", "Fail"],
+        correct: 0
+    },
+
+   {
+        question: "Aku mempunyai satu mata tetapi tidak boleh melihat. Apakah aku?",
+        answers: ["Jarum", "Cermin", "Kamera", "Badai"],
+        correct: 0
+    },
+
+  {
+        question: "Aku boleh didengar tetapi tidak boleh dilihat. Aku menjawab apabila kamu bercakap. Apakah aku?",
+        answers: ["Radio", "Gema", "Telefon", "Angin"],
+        correct: 1
+    },
+
+ {
+        question: "Aku hilang sebaik sahaja kamu menyebut namaku. Apakah aku?",
+        answers: ["Gelap", "Senyap", "Masa", "Bayang"],
+        correct: 1
+    },
+
+
+ {
+    question: "Apa yang mempunyai gigi tetapi tidak boleh menggigit?",
+    answers: ["Sisir", "Batu", "Gelas", "Buku"],
+    correct: 0
+  
+   },
+  
+
+  
+{
+    question: "Apa yang mempunyai kaki tetapi tidak boleh berjalan?",
+    answers: ["Kucing", "Meja", "Burung", "Ikan"],
+    correct: 1
+},
+
+{
+    question: "Apa yang mempunyai tangan tetapi tidak boleh bertepuk?",
+    answers: ["Jam", "Manusia", "Pokok", "Kerusi"],
+    correct: 0
+},
+
+{
+    question: "Apa yang mempunyai muka tetapi tidak mempunyai mulut?",
+    answers: ["Jam", "Bayi", "Ikan", "Buku"],
+    correct: 0
+},
+
+{
+    question: "Aku putih ketika kotor dan hitam ketika bersih. Apakah aku?",
+    answers: ["Papan hitam", "Kapur", "Kertas", "Batu"],
+    correct: 0
+},
+
+{
+    question: "Apa yang boleh berlari tetapi tidak mempunyai kaki?",
+    answers: ["Air", "Kucing", "Kereta", "Burung"],
+    correct: 0
+},
+
+{
+    question: "Aku mempunyai sayap tetapi bukan burung. Aku boleh terbang tetapi bukan haiwan. Apakah aku?",
+    answers: ["Kapal terbang", "Ikan", "Kucing", "Ular"],
+    correct: 0
+},
+
+{
+    question: "Apa yang naik apabila hujan turun?",
+    answers: ["Payung", "Air sungai", "Matahari", "Debu"],
+    correct: 0
+},
+
+{
+    question: "Aku ada rumah tetapi tidak ada pintu. Apakah aku?",
+    answers: ["Siput", "Kucing", "Burung", "Ikan"],
+    correct: 0
+},
+
+{
+    question: "Apa yang boleh memenuhi sebuah bilik tetapi tidak mengambil ruang?",
+    answers: ["Cahaya", "Meja", "Kerusi", "Kotak"],
+    correct: 0
+},
+
+{
+    question: "Aku mempunyai telinga tetapi tidak boleh mendengar. Apakah aku?",
+    answers: ["Cawan", "Kucing", "Arnab", "Manusia"],
+    correct: 0
+},
+
+{
+    question: "Apa yang semakin tinggi tetapi semakin pendek?",
+    answers: ["Lilin yang menyala", "Pokok", "Gunung", "Menara"],
+    correct: 0
+},
+
+{
+    question: "Aku boleh terbang tanpa sayap dan menangis tanpa mata. Apakah aku?",
+    answers: ["Awan", "Burung", "Kapal terbang", "Daun"],
+    correct: 0
+},
+
+{
+    question: "Apa yang mempunyai banyak lubang tetapi masih boleh menyimpan air?",
+    answers: ["Span", "Batu", "Kertas", "Kayu"],
+    correct: 0
+},
+
+{
+    question: "Aku mempunyai kepala tetapi tiada otak. Apakah aku?",
+    answers: ["Paku", "Manusia", "Kucing", "Burung"],
+    correct: 0
+},
+
+{
+    question: "Apa yang boleh bergerak ke seluruh dunia tetapi tetap berada di satu tempat?",
+    answers: ["Setem", "Kereta", "Kapal", "Pesawat"],
+    correct: 0
+},
+
+{
+    question: "Aku mempunyai akar tetapi tidak tumbuh. Apakah aku?",
+    answers: ["Gigi", "Pokok", "Rumput", "Bunga"],
+    correct: 0
+},
+
+{
+    question: "Pada waktu kecil aku merangkak dengan empat anggota. Bila dewasa aku berjalan dengan dua kaki. Bila tua aku menggunakan tongkat. Siapakah aku?",
+    answers: ["Manusia", "Kucing", "Anjing", "Burung"],
+    correct: 0
+},
+
+{
+    question: "Apa yang semakin banyak diambil, semakin banyak tertinggal?",
+    answers: ["Langkah", "Air", "Duit", "Makanan"],
+    correct: 0
+},
+  
+{
+    question: "Aku tidak mempunyai mulut tetapi boleh memberitahu masa. Apakah aku?",
+    answers: ["Jam", "Buku", "Radio", "Cermin"],
+    correct: 0
+},
+
+  {
+    question: "Apa yang mempunyai jari tetapi bukan manusia?",
+    answers: ["Sarung tangan", "Kasut", "Topi", "Baju"],
+    correct: 0
+},
+{
+    question: "Aku mempunyai mata tetapi tidak boleh melihat. Aku boleh menunjukkan arah.",
+    answers: ["Kompas", "Cermin", "Jam", "Lampu"],
+    correct: 0
+},
+{
+    question: "Apa yang jatuh tetapi tidak pernah cedera?",
+    answers: ["Hujan", "Batu", "Gelas", "Pokok"],
+    correct: 0
+},
+{
+    question: "Apa yang boleh berjalan tanpa kaki dan boleh berhenti tanpa tangan?",
+    answers: ["Jam", "Air", "Angin", "Masa"],
+    correct: 0
+},
+{
+    question: "Aku mempunyai banyak warna dan muncul selepas hujan.",
+    answers: ["Pelangi", "Awan", "Matahari", "Bintang"],
+    correct: 0
+},
+{
+    question: "Apa yang semakin kamu gunakan, semakin banyak ia berkurang?",
+    answers: ["Sabun", "Buku", "Meja", "Kerusi"],
+    correct: 0
+},
+{
+    question: "Aku boleh bercakap tanpa mulut dan mendengar tanpa telinga.",
+    answers: ["Telefon", "Batu", "Pokok", "Kerusi"],
+    correct: 0
+},
+{
+    question: "Apa yang mempunyai ekor tetapi bukan haiwan dan boleh terbang di langit?",
+    answers: ["Layang-layang", "Kucing", "Ikan", "Ular"],
+    correct: 0
+},
+{
+    question: "Aku menjadi lebih kecil setiap kali aku digunakan.",
+    answers: ["Pensel", "Buku", "Kerusi", "Jam"],
+    correct: 0
+},
+{
+    question: "Apa yang boleh membuka pintu tetapi tidak mempunyai tangan?",
+    answers: ["Kunci", "Buku", "Pensel", "Kasut"],
+    correct: 0
+},
+{
+    question: "Aku mempunyai kulit tetapi bukan manusia. Aku mempunyai isi tetapi bukan rumah.",
+    answers: ["Buah", "Batu", "Buku", "Kasut"],
+    correct: 0
+},
+{
+    question: "Apa yang boleh memantulkan wajah kamu tetapi tidak mempunyai mata?",
+    answers: ["Cermin", "Air", "Buku", "Kertas"],
+    correct: 0
+},
+{
+    question: "Aku muncul pada waktu malam dan menerangi langit. Bentukku boleh berubah-ubah sepanjang bulan. Apakah aku?",
+    answers: ["Bulan", "Matahari", "Pelangi", "Awan"],
+    correct: 0
+},
+{
+    question: "Aku tidak boleh dilihat tetapi boleh dirasakan pada kulit.",
+    answers: ["Angin", "Batu", "Cahaya", "Bayang"],
+    correct: 0
+},
+{
+    question: "Aku boleh membuat sesuatu panas tetapi aku sendiri boleh menjadi sejuk.",
+    answers: ["Api", "Matahari", "Ais", "Air"],
+    correct: 0
+},
+{
+    question: "Aku mempunyai banyak halaman dan boleh membantu kamu mencari maklumat.",
+    answers: ["Buku", "Kasut", "Gelas", "Bantal"],
+    correct: 0
+},
+{
+    question: "Aku mempunyai dua roda tetapi tidak boleh berjalan sendiri.",
+    answers: ["Basikal", "Kereta", "Kapal", "Pesawat"],
+    correct: 0
+},
+{
+    question: "Apa yang boleh masuk ke dalam air tetapi tidak menjadi basah?",
+    answers: ["Bayang", "Batu", "Kain", "Kertas"],
+    correct: 0
+},
+{
+    question: "Aku sentiasa mengikut kamu pada waktu terang tetapi hilang dalam gelap.",
+    answers: ["Bayang", "Angin", "Bunyi", "Cahaya"],
+    correct: 0
+},
+{
+    question: "Apa yang boleh kamu lihat sekali dalam 'minit', dua kali dalam 'minggu', tetapi tidak ada dalam 'tahun'?",
+    answers: ["Huruf I", "Huruf M", "Huruf N", "Huruf T"],
+    correct: 0
+},
+  {
+    question: "Aku boleh membuat kamu menangis tanpa menyentuh kamu.",
+    answers: ["Bawang", "Bantal", "Selimut", "Kasut"],
+    correct: 0
+},
+{
+    question: "Aku ada di kepala kamu, tetapi bukan otak. Aku boleh dipotong tetapi tidak sakit.",
+    answers: ["Rambut", "Telinga", "Mata", "Hidung"],
+    correct: 0
+},
+{
+    question: "Aku boleh menjadi panjang atau pendek. Aku boleh membuat orang ketawa atau menangis.",
+    answers: ["Cerita", "Tali", "Jalan", "Pensel"],
+    correct: 0
+},
+{
+    question: "Aku mempunyai dua sisi tetapi tidak mempunyai badan. Aku boleh digunakan untuk membuat keputusan.",
+    answers: ["Syiling", "Buku", "Kad", "Kertas"],
+    correct: 0
+},
+{
+    question: "Aku boleh membuat bunyi apabila dipukul, tetapi aku bukan manusia.",
+    answers: ["Dram", "Bantal", "Kasut", "Buku"],
+    correct: 0
+},
+{
+    question: "Aku boleh menyimpan banyak barang, tetapi apabila aku penuh, aku menjadi berat.",
+    answers: ["Beg", "Kasut", "Topi", "Bantal"],
+    correct: 0
+},
+{
+    question: "Aku boleh menutup seluruh badan kamu tetapi aku bukan kulit.",
+    answers: ["Baju", "Rambut", "Selimut", "Payung"],
+    correct: 0
+},
+{
+    question: "Aku mempunyai nombor tetapi tidak pandai mengira. Aku boleh menunjukkan siapa yang menang.",
+    answers: ["Papan skor", "Kalkulator", "Jam", "Telefon"],
+    correct: 0
+},
+{
+    question: "Aku boleh menyimpan rahsia di dalam diriku tetapi aku tidak boleh bercakap.",
+    answers: ["Diari", "Kasut", "Cawan", "Meja"],
+    correct: 0
+},
+{
+    question: "Aku mempunyai banyak butang, tetapi bukan baju. Bila ditekan, aku mengeluarkan huruf.",
+    answers: ["Papan kekunci", "Televisyen", "Jam", "Radio"],
+    correct: 0
+},
+{
+    question: "Aku boleh menyala apabila gelap dan boleh dipadam apabila tidak diperlukan.",
+    answers: ["Lampu", "Bantal", "Kerusi", "Cermin"],
+    correct: 0
+},
+{
+    question: "Aku mempunyai banyak halaman kosong dan digunakan untuk menulis atau melukis.",
+    answers: ["Buku nota", "Kasut", "Gelas", "Payung"],
+    correct: 0
+},
+{
+    question: "Aku turun dari langit tetapi bukan burung. Aku boleh membuat jalan menjadi basah.",
+    answers: ["Hujan", "Asap", "Debu", "Cahaya"],
+    correct: 0
+},
+{
+    question: "Aku mempunyai 13 hati tetapi tiada organ.",
+    answers: ["Satu set kad permainan", "Jam", "Buku", "Pokok"],
+    correct: 0
+},
+{
+    question: "Seorang lelaki melihat gambar seseorang. Dia berkata, 'Aku tidak mempunyai abang atau adik, tetapi ayah orang dalam gambar ini ialah anak ayahku.' Siapakah dalam gambar itu?",
+    answers: ["Anak lelakinya", "Ayahnya", "Dirinya sendiri", "Kawannya"],
+    correct: 0
+},
+{
+    question: "Sebuah kotak mengandungi bola merah dan biru. Berapa minimum bola yang perlu diambil tanpa melihat untuk memastikan dua bola mempunyai warna yang sama?",
+    answers: ["2", "3", "4", "5"],
+    correct: 1
+},
+{
+    question: "Aku mempunyai 6 muka dan 21 mata, tetapi aku tidak boleh melihat.",
+    answers: ["Dadu", "Jam", "Kamera", "Cermin"],
+    correct: 0
+},
+{
+    question: "Sebuah rumah satu tingkat mempunyai semua benda berwarna biru. Apakah warna tangganya?",
+    answers: ["Biru", "Putih", "Merah", "Tiada tangga"],
+    correct: 3
+},
+{
+    question: "Dua orang ayah dan dua orang anak pergi memancing. Mereka mendapat 3 ekor ikan dan setiap orang mendapat seekor. Berapa orang sebenarnya yang pergi?",
+    answers: ["Salah seorang tidak makan", "Mereka sebenarnya tiga orang", "Mereka mendapat ikan tambahan", "Seorang membawa dua ikan"],
+    correct: 1
+},
+{
+    question: "Dalam bilik gelap ada lilin, lampu minyak dan dapur gas. Kamu hanya mempunyai satu mancis. Apakah yang perlu dinyalakan dahulu?",
+    answers: ["Lilin", "Lampu minyak", "Dapur gas", "Mancis"],
+    correct: 3
+},
+{
+    question: "Sebuah jam yang rosak berhenti pada pukul 3:00. Berapa kali sehari jam itu menunjukkan waktu yang betul?",
+    answers: ["Sekali", "Dua kali", "Tiga kali", "Tidak pernah"],
+    correct: 1
+},
+{
+    question: "Seorang doktor memberikan 3 biji ubat. Pesakit perlu makan satu biji setiap 30 minit. Berapa lama masa diperlukan untuk menghabiskan semua ubat?",
+    answers: ["30 minit", "1 jam", "1 jam 30 minit", "2 jam"],
+    correct: 1
+},
+{
+    question: "Ada 5 orang dalam satu bilik. Setiap orang berjabat tangan dengan setiap orang lain sekali sahaja. Berapa jumlah berjabat tangan?",
+    answers: ["5", "10", "15", "20"],
+    correct: 1
+},
+{
+    question: "Seorang petani mempunyai 17 ekor kambing. Semua kecuali 9 ekor mati. Berapa ekor kambing yang masih hidup?",
+    answers: ["8", "9", "10", "17"],
+    correct: 1
+},
+{
+    question: "Aku mempunyai banyak gigi tetapi tidak boleh makan. Aku digunakan pada rambut.",
+    answers: ["Sisir", "Garpu", "Kunci", "Gergaji"],
+    correct: 0
+},
+{
+    question: "Jika kamu mempunyai 10 gula-gula dan memberikan 3 kepada kawan, kemudian makan 2, berapa gula-gula yang tinggal?",
+    answers: ["4", "5", "6", "7"],
+    correct: 1
+},
+{
+    question: "Aku boleh dilihat pada waktu malam, tetapi tidak boleh disentuh. Aku sangat jauh dari bumi.",
+    answers: ["Bintang", "Kerusi", "Pokok", "Batu"],
+    correct: 0
+},
+{
+    question: "Seekor ayam bertelur satu telur setiap hari. Berapa telur yang dihasilkan dalam 7 hari?",
+    answers: ["5", "6", "7", "8"],
+    correct: 2
+},
+{
+    question: "Sebuah bas membawa 10 penumpang. Di hentian pertama 3 orang turun dan 5 orang naik. Berapa penumpang sekarang?",
+    answers: ["10", "12", "13", "15"],
+    correct: 1
+},
+{
+    question: "Aku mempunyai jarum tetapi bukan doktor. Aku boleh menunjukkan masa.",
+    answers: ["Jam", "Buku", "Kasut", "Cawan"],
+    correct: 0
+},
+{
+    question: "Jika hari ini Isnin, hari apakah 3 hari selepas esok?",
+    answers: ["Rabu", "Khamis", "Jumaat", "Sabtu"],
+    correct: 1
+},
+{
+    question: "Sebuah bilik mempunyai 4 sudut. Setiap sudut ada seekor kucing. Berapa ekor kucing semuanya?",
+    answers: ["2", "3", "4", "8"],
+    correct: 2
+},
+{
+    question: "Aku semakin pendek apabila semakin banyak digunakan. Aku sering digunakan untuk menulis.",
+    answers: ["Pensel", "Buku", "Meja", "Kertas"],
+    correct: 0
+},
+{
+    question: "Jika 2 + 2 = 4, 4 + 4 = 8, maka 8 + 8 = ?",
+    answers: ["12", "14", "16", "18"],
+    correct: 2
+},
+{
+    question: "Sebuah kereta bergerak ke utara. Jika ia berpusing ke kanan, arah manakah ia bergerak?",
+    answers: ["Utara", "Selatan", "Timur", "Barat"],
+    correct: 2
+},
+{
+    question: "Aku tidak mempunyai kaki tetapi boleh bergerak. Aku tidak mempunyai mulut tetapi boleh berbunyi.",
+    answers: ["Kereta", "Batu", "Meja", "Kasut"],
+    correct: 0
+},
+{
+    question: "Ada 12 bulan dalam setahun. Berapa bulan mempunyai sekurang-kurangnya 28 hari?",
+    answers: ["1", "2", "6", "12"],
+    correct: 3
+},
+{
+    question: "Seorang lelaki mempunyai 4 anak. Setiap anak mempunyai seorang kakak yang sama. Berapa orang anak lelaki itu semuanya?",
+    answers: ["4", "5", "6", "8"],
+    correct: 1
+},
+{
+    question: "Jika satu buku berharga RM5, berapa harga 4 buah buku?",
+    answers: ["RM10", "RM15", "RM20", "RM25"],
+    correct: 2
+},
+{
+    question: "Aku boleh dibuka dan ditutup, tetapi bukan pintu. Aku digunakan untuk membaca.",
+    answers: ["Buku", "Kasut", "Payung", "Kerusi"],
+    correct: 0
+}
+
+];
+  
+const questionsEN = [
+
+    {
+        question: "There are cities but no houses, rivers but no water, and forests but no trees. What am I?",
+        answers: ["A map", "A book", "A globe", "A picture"],
+        correct: 0
+    },
+
+    {
+        question: "I travel around the world but always stay in one corner. What am I?",
+        answers: ["A clock", "A stamp", "The moon", "A car"],
+        correct: 1
+    },
+
+    {
+        question: "The more you take from me, the bigger I become. What am I?",
+        answers: ["A hole", "A rock", "A box", "A mountain"],
+        correct: 0
+    },
+
+    {
+        question: "I have many keys but no doors. I have space but no rooms. What am I?",
+        answers: ["A piano", "A keyboard", "A phone", "A chest"],
+        correct: 1
+    },
+
+    {
+        question: "I am always coming but never arrive. What am I?",
+        answers: ["Yesterday", "Tomorrow", "Morning", "Night"],
+        correct: 1
+    },
+
+    {
+        question: "I am very light, but even the strongest person cannot hold me for long. What am I?",
+        answers: ["Wind", "Breath", "Dust", "Water"],
+        correct: 1
+    },
+
+    {
+        question: "I have a head and a tail but no body. What am I?",
+        answers: ["A snake", "A coin", "A fish", "A worm"],
+        correct: 1
+    },
+
+    {
+        question: "If you have me, you want to share me. But if you share me, you no longer have me. What am I?",
+        answers: ["A secret", "Money", "Food", "A gift"],
+        correct: 0
+    },
+
+    {
+        question: "What can be broken even though it is never touched?",
+        answers: ["Glass", "A promise", "A rock", "Wood"],
+        correct: 1
+    },
+
+    {
+        question: "What always goes up but never comes down?",
+        answers: ["Smoke", "Age", "Price", "A balloon"],
+        correct: 1
+    },
+
+    {
+        question: "I become wetter as I dry something. What am I?",
+        answers: ["A cloud", "A towel", "A cloth", "A sponge"],
+        correct: 1
+    },
+
+    {
+        question: "I have many eyes but cannot see. What am I?",
+        answers: ["A potato", "A needle", "A rock", "A tree"],
+        correct: 0
+    },
+
+    {
+        question: "I have a neck but no head. What am I?",
+        answers: ["A bottle", "A shirt", "A guitar", "A shoe"],
+        correct: 0
+    },
+
+    {
+        question: "What can you catch but cannot throw?",
+        answers: ["A ball", "A cold", "A fish", "A key"],
+        correct: 1
+    },
+
+    {
+        question: "I am not alive but I can grow. I have no lungs but I need air. What am I?",
+        answers: ["Fire", "A rock", "A tree", "A cloud"],
+        correct: 0
+    },
+
+    {
+        question: "The longer I am used, the shorter I become. What am I?",
+        answers: ["A rope", "A candle", "A pencil", "A road"],
+        correct: 1
+    },
+
+    {
+        question: "I have many pages but I am not a book. What am I?",
+        answers: ["A calendar", "A magazine", "A newspaper", "A file"],
+        correct: 0
+    },
+
+    {
+        question: "I have one eye but cannot see. What am I?",
+        answers: ["A needle", "A mirror", "A camera", "A storm"],
+        correct: 0
+    },
+
+    {
+        question: "I can be heard but cannot be seen. I answer when you speak. What am I?",
+        answers: ["A radio", "An echo", "A phone", "The wind"],
+        correct: 1
+    },
+
+    {
+        question: "I disappear as soon as you say my name. What am I?",
+        answers: ["Darkness", "Silence", "Time", "A shadow"],
+        correct: 1
+    },
+
+    {
+        question: "What has teeth but cannot bite?",
+        answers: ["A comb", "A rock", "A glass", "A book"],
+        correct: 0
+    },
+
+    {
+        question: "What has legs but cannot walk?",
+        answers: ["A cat", "A table", "A bird", "A fish"],
+        correct: 1
+    },
+
+    {
+        question: "What has hands but cannot clap?",
+        answers: ["A clock", "A person", "A tree", "A chair"],
+        correct: 0
+    },
+
+    {
+        question: "What has a face but no mouth?",
+        answers: ["A clock", "A baby", "A fish", "A book"],
+        correct: 0
+    },
+
+    {
+        question: "I am white when dirty and black when clean. What am I?",
+        answers: ["A blackboard", "Chalk", "Paper", "A rock"],
+        correct: 0
+    },
+
+    {
+        question: "What can run but has no legs?",
+        answers: ["Water", "A cat", "A car", "A bird"],
+        correct: 0
+    },
+
+    {
+        question: "I have wings but I am not a bird. I can fly but I am not an animal. What am I?",
+        answers: ["An airplane", "A fish", "A cat", "A snake"],
+        correct: 0
+    },
+
+    {
+        question: "What goes up when the rain comes down?",
+        answers: ["An umbrella", "River water", "The sun", "Dust"],
+        correct: 0
+    },
+
+    {
+        question: "I have a home but no door. What am I?",
+        answers: ["A snail", "A cat", "A bird", "A fish"],
+        correct: 0
+    },
+
+    {
+        question: "What can fill a room but takes up no space?",
+        answers: ["Light", "A table", "A chair", "A box"],
+        correct: 0
+    },
+
+    {
+        question: "I have ears but cannot hear. What am I?",
+        answers: ["A cup", "A cat", "A rabbit", "A person"],
+        correct: 0
+    },
+
+    {
+        question: "What gets taller but shorter at the same time?",
+        answers: ["A burning candle", "A tree", "A mountain", "A tower"],
+        correct: 0
+    },
+
+    {
+        question: "I can fly without wings and cry without eyes. What am I?",
+        answers: ["A cloud", "A bird", "An airplane", "A leaf"],
+        correct: 0
+    },
+
+    {
+        question: "What has many holes but can still hold water?",
+        answers: ["A sponge", "A rock", "Paper", "Wood"],
+        correct: 0
+    },
+
+    {
+        question: "I have a head but no brain. What am I?",
+        answers: ["A nail", "A person", "A cat", "A bird"],
+        correct: 0
+    },
+
+    {
+        question: "What can travel all around the world while staying in one place?",
+        answers: ["A stamp", "A car", "A ship", "An airplane"],
+        correct: 0
+    },
+
+    {
+        question: "I have roots but I do not grow. What am I?",
+        answers: ["A tooth", "A tree", "Grass", "A flower"],
+        correct: 0
+    },
+
+    {
+        question: "When I am young, I crawl on four limbs. When I grow up, I walk on two legs. When I am old, I use a cane. Who am I?",
+        answers: ["A human", "A cat", "A dog", "A bird"],
+        correct: 0
+    },
+
+    {
+        question: "What gets bigger the more you take away?",
+        answers: ["Footsteps", "Water", "Money", "Food"],
+        correct: 0
+    },
+
+    {
+        question: "I have no mouth but I can tell the time. What am I?",
+        answers: ["A clock", "A book", "A radio", "A mirror"],
+        correct: 0
+    },
+
+    {
+        question: "What has fingers but is not a human?",
+        answers: ["A glove", "A shoe", "A hat", "A shirt"],
+        correct: 0
+    },
+
+    {
+        question: "I have an eye but cannot see. I can show direction.",
+        answers: ["A compass", "A mirror", "A clock", "A lamp"],
+        correct: 0
+    },
+
+    {
+        question: "What falls but never gets hurt?",
+        answers: ["Rain", "A rock", "A glass", "A tree"],
+        correct: 0
+    },
+
+    {
+        question: "What can move without legs and stop without hands?",
+        answers: ["A clock", "Water", "Wind", "Time"],
+        correct: 0
+    },
+
+    {
+        question: "I have many colors and appear after rain.",
+        answers: ["A rainbow", "A cloud", "The sun", "A star"],
+        correct: 0
+    },
+
+    {
+        question: "What gets smaller the more you use it?",
+        answers: ["Soap", "A book", "A table", "A chair"],
+        correct: 0
+    },
+
+    {
+        question: "I can talk without a mouth and listen without ears. What am I?",
+        answers: ["A phone", "A rock", "A tree", "A chair"],
+        correct: 0
+    },
+
+    {
+        question: "What has a tail but is not an animal and can fly in the sky?",
+        answers: ["A kite", "A cat", "A fish", "A snake"],
+        correct: 0
+    },
+
+    {
+        question: "I become smaller every time I am used. What am I?",
+        answers: ["A pencil", "A book", "A chair", "A clock"],
+        correct: 0
+    },
+
+    {
+        question: "What can open a door but has no hands?",
+        answers: ["A key", "A book", "A pencil", "A shoe"],
+        correct: 0
+    },
+
+    {
+        question: "I have skin but I am not human. I have flesh inside me. What am I?",
+        answers: ["A fruit", "A rock", "A book", "A shoe"],
+        correct: 0
+    },
+  
+      {
+        question: "I have skin but I am not human. I have flesh inside me. What am I?",
+        answers: ["A fruit", "A rock", "A book", "A shoe"],
+        correct: 0
+    },
+
+    {
+        question: "What can reflect your face but has no eyes?",
+        answers: ["A mirror", "Water", "A book", "Paper"],
+        correct: 0
+    },
+
+    {
+        question: "I appear at night and light up the sky. My shape changes throughout the month. What am I?",
+        answers: ["The moon", "The sun", "A rainbow", "A cloud"],
+        correct: 0
+    },
+
+    {
+        question: "I cannot be seen but I can be felt on your skin. What am I?",
+        answers: ["Wind", "A rock", "Light", "A shadow"],
+        correct: 0
+    },
+
+    {
+        question: "I can make something hot but I can also become cold. What am I?",
+        answers: ["Fire", "The sun", "Ice", "Water"],
+        correct: 0
+    },
+
+    {
+        question: "I have many pages and can help you find information. What am I?",
+        answers: ["A book", "A shoe", "A glass", "A pillow"],
+        correct: 0
+    },
+
+    {
+        question: "I have two wheels but I cannot move by myself. What am I?",
+        answers: ["A bicycle", "A car", "A ship", "An airplane"],
+        correct: 0
+    },
+
+    {
+        question: "What can go into water but does not get wet?",
+        answers: ["A shadow", "A rock", "Cloth", "Paper"],
+        correct: 0
+    },
+
+    {
+        question: "I always follow you when there is light but disappear in the dark. What am I?",
+        answers: ["A shadow", "Wind", "Sound", "Light"],
+        correct: 0
+    },
+
+    {
+        question: "What can you see once in 'minute', twice in 'week', but never in 'year'?",
+        answers: ["The letter E", "The letter M", "The letter N", "The letter T"],
+        correct: 0
+    },
+
+    {
+        question: "I can make you cry without touching you. What am I?",
+        answers: ["An onion", "A pillow", "A blanket", "A shoe"],
+        correct: 0
+    },
+
+    {
+        question: "I am on your head, but I am not your brain. I can be cut but I do not feel pain. What am I?",
+        answers: ["Hair", "Ear", "Eye", "Nose"],
+        correct: 0
+    },
+
+    {
+        question: "I can be long or short. I can make people laugh or cry. What am I?",
+        answers: ["A story", "A rope", "A road", "A pencil"],
+        correct: 0
+    },
+
+    {
+        question: "I have two sides but no body. I can be used to make a decision. What am I?",
+        answers: ["A coin", "A book", "A card", "Paper"],
+        correct: 0
+    },
+
+    {
+        question: "I can make a sound when I am hit, but I am not a person. What am I?",
+        answers: ["A drum", "A pillow", "A shoe", "A book"],
+        correct: 0
+    },
+
+    {
+        question: "I can hold many things, but when I am full, I become heavy. What am I?",
+        answers: ["A bag", "A shoe", "A hat", "A pillow"],
+        correct: 0
+    },
+
+    {
+        question: "I can cover your whole body but I am not your skin. What am I?",
+        answers: ["Clothes", "Hair", "A blanket", "An umbrella"],
+        correct: 0
+    },
+
+    {
+        question: "I have numbers but I cannot calculate. I can show who wins. What am I?",
+        answers: ["A scoreboard", "A calculator", "A clock", "A phone"],
+        correct: 0
+    },
+
+    {
+        question: "I can keep secrets inside me but I cannot speak. What am I?",
+        answers: ["A diary", "A shoe", "A cup", "A table"],
+        correct: 0
+    },
+
+    {
+        question: "I have many buttons, but I am not a shirt. When pressed, I produce letters. What am I?",
+        answers: ["A keyboard", "A television", "A clock", "A radio"],
+        correct: 0
+    },
+
+    {
+        question: "I can light up when it is dark and can be turned off when not needed. What am I?",
+        answers: ["A lamp", "A pillow", "A chair", "A mirror"],
+        correct: 0
+    },
+
+    {
+        question: "I have many blank pages and am used for writing or drawing. What am I?",
+        answers: ["A notebook", "A shoe", "A glass", "An umbrella"],
+        correct: 0
+    },
+
+    {
+        question: "I fall from the sky but I am not a bird. I can make the roads wet. What am I?",
+        answers: ["Rain", "Smoke", "Dust", "Light"],
+        correct: 0
+    },
+
+    {
+        question: "I have 13 hearts but no organs. What am I?",
+        answers: ["A deck of playing cards", "A clock", "A book", "A tree"],
+        correct: 0
+    },
+
+    {
+        question: "A man looks at a picture and says, 'I have no brothers or sisters, but the father of the person in this picture is my father's son.' Who is in the picture?",
+        answers: ["His son", "His father", "Himself", "His friend"],
+        correct: 0
+    },
+
+    {
+        question: "A box contains red and blue balls. What is the minimum number of balls you must take without looking to guarantee that two balls are the same color?",
+        answers: ["2", "3", "4", "5"],
+        correct: 1
+    },
+
+    {
+        question: "I have 6 faces and 21 eyes, but I cannot see. What am I?",
+        answers: ["A pair of dice", "A clock", "A camera", "A mirror"],
+        correct: 0
+    },
+
+    {
+        question: "A one-story house has everything blue. What color are the stairs?",
+        answers: ["Blue", "White", "Red", "There are no stairs"],
+        correct: 3
+    },
+
+    {
+        question: "Two fathers and two sons go fishing. They catch 3 fish and each person gets one. How many people actually went fishing?",
+        answers: ["One did not eat", "There were actually three people", "They caught an extra fish", "One person took two fish"],
+        correct: 1
+    },
+
+    {
+        question: "In a dark room there is a candle, an oil lamp and a gas stove. You only have one match. What should you light first?",
+        answers: ["The candle", "The oil lamp", "The gas stove", "The match"],
+        correct: 3
+    },
+
+    {
+        question: "A broken clock stops at 3:00. How many times a day does the clock show the correct time?",
+        answers: ["Once", "Twice", "Three times", "Never"],
+        correct: 1
+    },
+
+    {
+        question: "A doctor gives a patient 3 pills. The patient must take one pill every 30 minutes. How long will it take to finish all the pills?",
+        answers: ["30 minutes", "1 hour", "1 hour 30 minutes", "2 hours"],
+        correct: 1
+    },
+
+    {
+        question: "There are 5 people in a room. Each person shakes hands with every other person exactly once. How many handshakes are there?",
+        answers: ["5", "10", "15", "20"],
+        correct: 1
+    },
+
+    {
+        question: "A farmer has 17 goats. All except 9 die. How many goats are still alive?",
+        answers: ["8", "9", "10", "17"],
+        correct: 1
+    },
+
+    {
+        question: "I have many teeth but cannot eat. I am used on hair. What am I?",
+        answers: ["A comb", "A fork", "A key", "A saw"],
+        correct: 0
+    },
+
+    {
+        question: "If you have 10 candies, give 3 to a friend, and then eat 2, how many candies are left?",
+        answers: ["4", "5", "6", "7"],
+        correct: 1
+    },
+
+    {
+        question: "I can be seen at night but cannot be touched. I am very far from Earth. What am I?",
+        answers: ["A star", "A chair", "A tree", "A rock"],
+        correct: 0
+    
+      },
+      
+  {
+    question: "A chicken lays one egg every day. How many eggs will it produce in 7 days?",
+    answers: ["5", "6", "7", "8"],
+    correct: 2
+  }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let lives = 3;
+
+let playerName = "";
+let startTime = "";
+
+  const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwj_hLfDrpIkBqgdPNkfzX6v6fPvye5tgQSa9r8E31lw0Nd3BniA2RdNwq6MfgmhzfO/exec";
+
+let answered = false;
+bonusGiven = false;
+let coins = 0;
+let gameQuestions = [];
+
+
+/* SKOR TERTINGGI */
+let highScore =
+    Number(localStorage.getItem("tekaTekiHighScore")) || 0;
+
+document.getElementById("startHighScore").textContent =
+    highScore;
+
+
+/* ACAK SOALAN */
+
+function shuffleQuestions() {
+    gameQuestions = [...questions];
+
+    for (let i = gameQuestions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [gameQuestions[i], gameQuestions[j]] =
+        [gameQuestions[j], gameQuestions[i]];
+    }
+
+    gameQuestions = gameQuestions.slice(0, 50);
+}
+/* MULAKAN GAME */
+
+function startGame() {
+
+    const nameInput = document.getElementById("playerName");
+
+    if (!nameInput.value.trim()) {
+        alert("Sila masukkan nama anda.");
+        return;
+    }
+playerName = nameInput.value.trim();
+startTime = new Date().toLocaleString("ms-MY");
+
+
+  const savedCoins =
+    localStorage.getItem("tekaTekiCoins_" + playerName);
+
+coins = Number(savedCoins) || 0;
+  
+    document.getElementById("playerScreen").style.display = "none";
+
+document.querySelector(".game").style.display = "block";
+
+document.getElementById("coins").textContent = coins;
+  
+currentQuestion = 0;
+score = 0;
+lives = 3;
+answered = false;
+bonusGiven = false;
+  updateLives();
+
+    shuffleQuestions();
+
+    document
+        .getElementById("startScreen")
+        .classList.add("hidden");
+
+    document
+        .getElementById("resultScreen")
+        .classList.add("hidden");
+
+    document
+        .getElementById("gameScreen")
+        .classList.remove("hidden");
+
+    showQuestion();
+}
+
+/* PAPAR SOALAN */
+function showQuestion() {
+
+    answered = false;
+
+    const q = currentLanguage === "en"
+        ? questionsEN[currentQuestion]
+        : gameQuestions[currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+        (currentQuestion + 1) + "/" + gameQuestions.length;
+
+    document.getElementById("score").textContent =
+        score;
+
+    updateLives();
+
+    document.getElementById("question").textContent =
+        q.question;
+
+    /* SEMBUNYIKAN GAMBAR DULU */
+    const questionImage = document.getElementById("questionImage");
+questionImage.style.display = "none";
+questionImage.textContent = getQuestionEmoji(q);
+  
+    /* PAPAR JAWAPAN */
+    const answersBox =
+        document.getElementById("answers");
+
+    answersBox.innerHTML = "";
+
+    document.getElementById("nextButton").style.display =
+        "none";
+
+    q.answers.forEach(function(item, index) {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "answer";
+
+        button.textContent =
+            String.fromCharCode(65 + index)
+            + ". "
+            + item;
+
+        button.onclick = function() {
+            chooseAnswer(index, button);
+        };
+
+        answersBox.appendChild(button);
+
+    });
+}
+function getQuestionEmoji(q) {
+
+    if (q.image) {
+        return q.image;
+    }
+
+    if (q.emoji) {
+        return q.emoji;
+    }
+
+    const answer = String(q.answers[q.correct]).toLowerCase();
+
+    const emojiMap = {
+
+        "peta": "🗺️",
+        "setem": "📮",
+        "lubang": "🕳️",
+        "papan kekunci": "⌨️",
+        "esok": "🌅",
+        "nafas": "💨",
+        "syiling": "🪙",
+        "rahsia": "🤫",
+        "janji": "🤝",
+        "umur": "🎂",
+        "tuala": "🧻",
+        "kentang": "🥔",
+        "botol": "🍾",
+        "selsema": "🤧",
+        "api": "🔥",
+        "lilin": "🕯️",
+        "kalendar": "📅",
+        "jarum": "🪡",
+        "gema": "🔊",
+        "senyap": "🤫",
+        "sisir": "💇",
+        "meja": "🪑",
+        "jam": "⏰",
+        "papan hitam": "⬛",
+        "air": "💧",
+        "kapal terbang": "✈️",
+        "payung": "☂️",
+        "siput": "🐌",
+        "cahaya": "💡",
+        "cawan": "☕",
+        "awan": "☁️",
+        "span": "🧽",
+        "paku": "🔩",
+        "gigi": "🦷",
+        "manusia": "👤",
+        "langkah": "👣",
+        "sarung tangan": "🧤",
+        "kompas": "🧭",
+        "hujan": "🌧️",
+        "pelangi": "🌈",
+        "sabun": "🧼",
+        "telefon": "📱",
+        "layang-layang": "🪁",
+        "pensel": "✏️",
+        "kunci": "🔑",
+        "buah": "🍎",
+        "cermin": "🪞",
+        "bulan": "🌙",
+        "angin": "💨",
+        "bawang": "🧅",
+        "rambut": "💇",
+        "cerita": "📖",
+        "dram": "🥁",
+        "beg": "🎒",
+        "baju": "👕",
+        "papan skor": "🏆",
+        "diari": "📔",
+        "lampu": "💡",
+        "buku nota": "📓",
+        "dadu": "🎲",
+        "mancis": "🔥",
+        "bintang": "⭐",
+        "timur": "➡️",
+        "barat": "⬅️",
+        "utara": "⬆️",
+        "selatan": "⬇️",
+        "matahari": "☀️",
+        "bumi": "🌍",
+        "bulan": "🌙",
+        "pokok": "🌳",
+        "bunga": "🌸",
+        "daun": "🍃",
+        "gunung": "⛰️",
+        "sungai": "🏞️",
+        "laut": "🌊",
+        "ikan": "🐟",
+        "burung": "🐦",
+        "kucing": "🐱",
+        "anjing": "🐶",
+        "ayam": "🐔",
+        "lembu": "🐄",
+        "kuda": "🐴",
+        "arnab": "🐰",
+        "tikus": "🐭",
+        "ular": "🐍",
+        "gajah": "🐘",
+        "singa": "🦁",
+        "roti": "🍞",
+        "nasi": "🍚",
+        "epal": "🍎",
+        "pisang": "🍌",
+        "oren": "🍊",
+        "telur": "🥚",
+        "susu": "🥛",
+        "kopi": "☕",
+        "teh": "🍵",
+        "rumah": "🏠",
+        "sekolah": "🏫",
+        "kereta": "🚗",
+      
+      
+        "basikal": "🚲",
+        "kapal": "🚢",
+        "kunci": "🔑",
+        "wang": "💵",
+        "duit": "💰",
+        "emas": "🥇",
+        "nombor": "🔢",
+        "satu": "1️⃣",
+        "dua": "2️⃣",
+        "tiga": "3️⃣",
+        "empat": "4️⃣",
+        "lima": "5️⃣",
+        "enam": "6️⃣",
+        "tujuh": "7️⃣",
+        "lapan": "8️⃣",
+        "sembilan": "9️⃣",
+        "sepuluh": "🔟",
+"bus": "🚌",
+
+"car": "🚗",
+"kereta": "🚗",
+"motorcycle": "🏍️",
+"motosikal": "🏍️",
+
+      "map": "🗺️",
+"stamp": "📮",
+"hole": "🕳️",
+"keyboard": "⌨️",
+"tomorrow": "🌅",
+"breath": "💨",
+"coin": "🪙",
+"secret": "🤫",
+"promise": "🤝",
+"age": "🎂",
+"towel": "🧻",
+"potato": "🥔",
+"bottle": "🍾",
+"cold": "🤧",
+"fire": "🔥",
+"candle": "🕯️",
+"calendar": "📅",
+"needle": "🪡",
+"echo": "🔊",
+"silence": "🤫",
+"comb": "🪮",
+"table": "🪑",
+"clock": "⏰",
+"blackboard": "🧑‍🏫",
+"water": "💧",
+"airplane": "✈️",
+"umbrella": "☂️",
+"snail": "🐌",
+"light": "💡",
+"cup": "☕",
+"cloud": "☁️",
+"sponge": "🧽",
+"nail": "🔩",
+"tooth": "🦷",
+"human": "👤",
+"pencil": "✏️",
+"glove": "🧤",
+"compass": "🧭",
+"rain": "🌧️",
+"rainbow": "🌈",
+"phone": "📱",
+"kite": "🪁",
+"key": "🔑",
+"fruit": "🍎",
+"mirror": "🪞",
+"moon": "🌙",
+"wind": "💨",
+"onion": "🧅",
+"hair": "💇",
+"story": "📖",
+"coin": "🪙",
+"drum": "🥁",
+"bag": "👜",
+"clothes": "👕",
+"scoreboard": "🏆",
+"diary": "📔",
+"lamp": "💡",
+"notebook": "📓",
+"deck of playing cards": "🃏",
+"star": "⭐"
+    };
+  
+
+    /* Cari jawapan yang sepadan */
+    for (const key in emojiMap) {
+
+        if (answer.includes(key)) {
+            return emojiMap[key];
+        }
+
+    }
+
+    /* Jika jawapan belum ada dalam senarai */
+    return "💡";
+}
+/* PILIH JAWAPAN */
+function chooseAnswer(choice, selectedButton) {
+
+    if (answered) {
+        return;
+    }
+
+    answered = true;
+
+    const q = currentLanguage === "en"
+        ? questionsEN[currentQuestion]
+        : gameQuestions[currentQuestion];
+
+    const correct = q.correct;
+
+    const buttons =
+        document.querySelectorAll(".answer");
+
+    buttons.forEach(function(button, index) {
+
+        button.disabled = true;
+
+        if (index === correct) {
+            button.classList.add("correct");
+        }
+
+    });
+
+    if (choice === correct) {
+
+        score += 10;
+        coins += 2;
+
+        localStorage.setItem(
+            "tekaTekiCoins_" + playerName,
+            coins
+        );
+
+        document.getElementById("questionImage").style.display =
+            "block";
+      
+document.getElementById("questionImage").textContent =
+    getQuestionEmoji(q);
+        
+      
+        playCorrectSound();
+
+    } else {
+
+        lives--;
+
+        playWrongSound();
+
+        selectedButton.classList.add("wrong");
+    }
+
+    document.getElementById("score").textContent =
+        score;
+
+    document.getElementById("coins").textContent =
+        coins;
+
+    updateLives();
+
+    if (lives <= 0) {
+        endGame();
+        return;
+    }
+
+    if (currentQuestion >= gameQuestions.length - 1) {
+        endGame();
+        return;
+    }
+
+    document.getElementById("nextButton").style.display =
+        "block";
+}
+
+/* SOALAN SETERUSNYA */
+
+function nextQuestion() {
+
+    currentQuestion++;
+
+    showQuestion();
+  
+}
+
+
+/* KEMASKINI NYAWA */
+function updateLives() {
+    document.getElementById("lives").textContent =
+        "❤️".repeat(lives) +
+        "🖤".repeat(3 - lives);
+}
+
+
+function playCorrectSound() {
+
+    const audioContext =
+        new (window.AudioContext || window.webkitAudioContext)();
+
+    const oscillator =
+        audioContext.createOscillator();
+
+    const gain =
+        audioContext.createGain();
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.frequency.value = 800;
+    gain.gain.value = 0.5;
+
+    oscillator.start();
+
+    oscillator.stop(
+        audioContext.currentTime + 0.15
+    );
+}
+
+function playWrongSound() {
+
+    const audioContext =
+        new (window.AudioContext || window.webkitAudioContext)();
+
+    const oscillator =
+        audioContext.createOscillator();
+
+    const gain =
+        audioContext.createGain();
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.type = "sawtooth";
+
+    oscillator.frequency.value = 150;
+
+    gain.gain.value = 0.7;
+
+    oscillator.start();
+
+    oscillator.stop(
+        audioContext.currentTime + 0.5
+    );
+}
+
+/* TAMAT GAME */
+  function endGame() {
+
+    document.getElementById("gameScreen").classList.add("hidden");
+
+    document.getElementById("resultScreen").classList.remove("hidden");
+
+    document.getElementById("finalScore").textContent =
+        score + "/500";
+
+    document.getElementById("finalPlayerName").textContent =
+        playerName;
+
+    if (score > highScore) {
+
+        highScore = score;
+
+        localStorage.setItem(
+            "tekaTekiHighScore",
+            highScore
+        );
+    }
+
+    if (!bonusGiven) {
+
+        coins += 10;
+        bonusGiven = true;
+
+        localStorage.setItem(
+            "tekaTekiCoins_" + playerName,
+            coins
+        );
+
+        document.getElementById("coins").textContent =
+            coins;
+    }
+
+    document.getElementById("finalHighScore").textContent =
+        highScore;
+
+    let message;
+
+    if (score >= 450) {
+        message = "🔥 Hebat! Kamu memang pakar teka-teki!";
+    }
+    else if (score >= 350) {
+        message = "👏 Bagus! Skor kamu sangat tinggi!";
+    }
+    else if (score >= 250) {
+        message = "⭐ Bagus! Teruskan usaha untuk skor lebih tinggi.";
+    }
+    else if (score >= 150) {
+        message = "👍 Tidak buruk! Cuba lagi.";
+    }
+    else {
+        message = "💪 Jangan putus asa. Cuba lagi!";
+    }
+
+    document.getElementById("resultMessage").textContent =
+        message;
+
+    let level;
+
+    if (score >= 450) {
+        level = "🏆 MASTER TEKA-TEKI";
+    }
+    else if (score >= 350) {
+        level = "🔥 PAKAR TEKA-TEKI";
+    }
+    else if (score >= 250) {
+        level = "⭐ BIJAK";
+    }
+    else if (score >= 150) {
+        level = "👍 PEMULA";
+    }
+    else {
+        level = "💪 TERUS BERLATIH";
+    }
+
+    document.getElementById("playerLevel").textContent =
+        level;
+
+    localStorage.setItem("lastPlayerName", playerName);
+    localStorage.setItem("lastPlayerScore", score);
+
+    fetch(GOOGLE_SHEET_URL, {
+        method: "POST",
+        body: JSON.stringify({
+            nama: playerName,
+            masa: startTime,
+            score: score
+        })
+    })
+    .then(function() {
+        console.log("Data berjaya dihantar.");
+    })
+    .catch(function(error) {
+        console.log("Gagal hantar data:", error);
+    });
+
+    document.getElementById("finalCoins").textContent =
+        coins;
+
+    showLeaderboard();
+}
+
+
+  /* HINT */
+function useHint() {
+
+    if (answered) return;
+
+    if (coins < 20) {
+        alert("🪙 Kamu perlukan 20 coin untuk guna Hint.");
+        return;
+    }
+
+    const q = currentLanguage === "en"
+        ? questionsEN[currentQuestion]
+        : gameQuestions[currentQuestion];
+
+    const correct = q.correct;
+
+    const buttons =
+        document.querySelectorAll(".answer");
+
+    let removed = false;
+
+    for (let i = 0; i < buttons.length; i++) {
+
+        if (i !== correct && !buttons[i].disabled) {
+
+            buttons[i].disabled = true;
+            buttons[i].style.opacity = "0.35";
+            buttons[i].textContent += " ❌";
+
+            removed = true;
+            break;
+        }
+    }
+
+    if (removed) {
+
+        coins -= 20;
+
+        localStorage.setItem(
+            "tekaTekiCoins_" + playerName,
+            coins
+        );
+
+        document.getElementById("coins").textContent =
+            coins;
+    }
+}
+ </script>
+
+</body>
+</html>
